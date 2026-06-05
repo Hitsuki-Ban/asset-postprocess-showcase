@@ -3,11 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Asset Postprocess Showcase</title>
-    <link rel="stylesheet" href="./assets/showcase.css" />
+    <meta
+      name="description"
+      content="A curated interactive Three.js gallery of Asset Postprocess white LOD model outputs."
+    />
+    <title>Asset Postprocess Gallery</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./assets/vendor/three/0.184.0/build/three.module.js",
+          "three/addons/": "./assets/vendor/three/0.184.0/examples/jsm/"
+        }
+      }
+    </script>
   </head>
   <body>
-    <div id="app" class="app-loading">Loading showcase evidence...</div>
-    <script type="module" src="./assets/showcase.js"></script>
+    <div id="app" class="loading-screen">Loading gallery...</div>
+    <script type="module" src="./assets/app.js"></script>
   </body>
 </html>

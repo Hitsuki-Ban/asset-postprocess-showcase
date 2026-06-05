@@ -1,0 +1,286 @@
+{
+  "schema": "AssetPostprocess.public_gallery.v1",
+  "title": "Asset Postprocess Gallery",
+  "generated_at_utc": "2026-06-05T02:57:19Z",
+  "notes": "Curated public demo gallery. Raw logs and private runtime materials are intentionally excluded.",
+  "categories": [
+    "All",
+    "Environment",
+    "Scan Forms"
+  ],
+  "source_notice": "Selected redistributable-safe public samples from Poly Haven and Smithsonian Open Access paths; Google Scanned Objects and AI stress samples are excluded from this public page pending separate rights review.",
+  "items": [
+    {
+      "id": "wooden-crate",
+      "title": "Wooden Crate",
+      "category": "Environment",
+      "source_family": "Poly Haven CC0",
+      "source_note": "Reusable environment prop with hard-surface detail.",
+      "thumbnail": "./assets/thumbnails/wooden-crate.webp",
+      "lods": [
+        {
+          "id": "LOD0",
+          "budget": 3288,
+          "url": "./assets/models/wooden-crate_lod0.glb",
+          "size_bytes": 532912,
+          "size_label": "520 KB",
+          "sha256": "ed3e07b83a1a2e7caeae294ddbdcf049f68868257df6882f5ee602bd3c910f99"
+        },
+        {
+          "id": "LOD1",
+          "budget": 1644,
+          "url": "./assets/models/wooden-crate_lod1.glb",
+          "size_bytes": 267520,
+          "size_label": "261 KB",
+          "sha256": "10ba11a8cc934a64a8a1cbcaf21627725822e208a578289cd3a813165bc88e69"
+        },
+        {
+          "id": "LOD2",
+          "budget": 789,
+          "url": "./assets/models/wooden-crate_lod2.glb",
+          "size_bytes": 129364,
+          "size_label": "126 KB",
+          "sha256": "41f5edbd7aef87818ef047cca2b0cde60e448f13c0b46c20812cb23648e171c8"
+        }
+      ]
+    },
+    {
+      "id": "boulder",
+      "title": "Boulder",
+      "category": "Environment",
+      "source_family": "Poly Haven CC0",
+      "source_note": "Natural rock prop prepared as staged white LODs.",
+      "thumbnail": "./assets/thumbnails/boulder.webp",
+      "lods": [
+        {
+          "id": "LOD0",
+          "budget": 12000,
+          "url": "./assets/models/boulder_lod0.glb",
+          "size_bytes": 1945828,
+          "size_label": "1.86 MB",
+          "sha256": "a3509705b768cf16731e80ee47faf94e6868bf94627576bc2a5c34ed2ef72075"
+        },
+        {
+          "id": "LOD1",
+          "budget": 6000,
+          "url": "./assets/models/boulder_lod1.glb",
+          "size_bytes": 973824,
+          "size_label": "951 KB",
+          "sha256": "0a8d0cdad5c08802c363453033819c412f7527baa9456b59f8e44bb170b7ec1e"
+        },
+        {
+          "id": "LOD2",
+          "budget": 2500,
+          "url": "./assets/models/boulder_lod2.glb",
+          "size_bytes": 406812,
+          "size_label": "397 KB",
+          "sha256": "883eea39e0809021268afcfba1769fecbe8d3ae2ffdb3ac132c0ee84be096529"
+        }
+      ]
+    },
+    {
+      "id": "moon-rock",
+      "title": "Moon Rock",
+      "category": "Environment",
+      "source_family": "Poly Haven CC0",
+      "source_note": "Irregular stone surface with compact multi-LOD delivery.",
+      "thumbnail": "./assets/thumbnails/moon-rock.webp",
+      "lods": [
+        {
+          "id": "LOD0",
+          "budget": 9334,
+          "url": "./assets/models/moon-rock_lod0.glb",
+          "size_bytes": 1513576,
+          "size_label": "1.44 MB",
+          "sha256": "7da8d916ea5927c18fc4137b6de4c6550ad592719e16e03dba84760c73688b89"
+        },
+        {
+          "id": "LOD1",
+          "budget": 4667,
+          "url": "./assets/models/moon-rock_lod1.glb",
+          "size_bytes": 757620,
+          "size_label": "740 KB",
+          "sha256": "0fbd8407f3e576aac29cc8d325981a5ae1ef22d6a2d19989aad0f47a4e3dede4"
+        },
+        {
+          "id": "LOD2",
+          "budget": 2240,
+          "url": "./assets/models/moon-rock_lod2.glb",
+          "size_bytes": 364648,
+          "size_label": "356 KB",
+          "sha256": "7ea9e93915f04c7d6fafa6ad0f55d5c184fdb13dda4fc2d42216be8f2ab57d83"
+        }
+      ]
+    },
+    {
+      "id": "dead-tree-trunk",
+      "title": "Dead Tree Trunk",
+      "category": "Environment",
+      "source_family": "Poly Haven CC0",
+      "source_note": "Branching natural form for silhouette-preserving LOD preview.",
+      "thumbnail": "./assets/thumbnails/dead-tree-trunk.webp",
+      "lods": [
+        {
+          "id": "LOD0",
+          "budget": 12000,
+          "url": "./assets/models/dead-tree-trunk_lod0.glb",
+          "size_bytes": 1945720,
+          "size_label": "1.86 MB",
+          "sha256": "b5debec8847046765d394fd3454a2599b8bd5559df679f628fd7ea86d6a5ac19"
+        },
+        {
+          "id": "LOD1",
+          "budget": 6000,
+          "url": "./assets/models/dead-tree-trunk_lod1.glb",
+          "size_bytes": 973824,
+          "size_label": "951 KB",
+          "sha256": "c340a2ce00668d3089cd97bd8a305f35cdcd3d3d82bd60f3832d461d16a3b694"
+        },
+        {
+          "id": "LOD2",
+          "budget": 2500,
+          "url": "./assets/models/dead-tree-trunk_lod2.glb",
+          "size_bytes": 406812,
+          "size_label": "397 KB",
+          "sha256": "7ac6cc47bc5d393db076a77aedb27a04e40c9560fb81e604927f6cf8d576ba17"
+        }
+      ]
+    },
+    {
+      "id": "organic-scan-form-a",
+      "title": "Organic Scan Form A",
+      "category": "Scan Forms",
+      "source_family": "Smithsonian Open Access",
+      "source_note": "Asymmetric scan-derived form normalized for browser review.",
+      "thumbnail": "./assets/thumbnails/organic-scan-form-a.webp",
+      "lods": [
+        {
+          "id": "LOD0",
+          "budget": 12000,
+          "url": "./assets/models/organic-scan-form-a_lod0.glb",
+          "size_bytes": 1945772,
+          "size_label": "1.86 MB",
+          "sha256": "5fcaa25fa909c563556de9e507c5305fe102a82fb4369a965091624bf80ffa15"
+        },
+        {
+          "id": "LOD1",
+          "budget": 6000,
+          "url": "./assets/models/organic-scan-form-a_lod1.glb",
+          "size_bytes": 973768,
+          "size_label": "951 KB",
+          "sha256": "228a88c64d850e9b02bc3185dc78e496ebf9eb69845f04f3c052900d49d80640"
+        },
+        {
+          "id": "LOD2",
+          "budget": 2500,
+          "url": "./assets/models/organic-scan-form-a_lod2.glb",
+          "size_bytes": 406808,
+          "size_label": "397 KB",
+          "sha256": "8c70c87270364a19564089c0a14ffcc9c9e214b2c4ec150de87e09033a28c4e8"
+        }
+      ]
+    },
+    {
+      "id": "organic-scan-form-b",
+      "title": "Organic Scan Form B",
+      "category": "Scan Forms",
+      "source_family": "Smithsonian Open Access",
+      "source_note": "Smooth organic scan sample with simplified viewing stages.",
+      "thumbnail": "./assets/thumbnails/organic-scan-form-b.webp",
+      "lods": [
+        {
+          "id": "LOD0",
+          "budget": 12000,
+          "url": "./assets/models/organic-scan-form-b_lod0.glb",
+          "size_bytes": 1945616,
+          "size_label": "1.86 MB",
+          "sha256": "b4ef9c663e3e47dd3b2fdacbd3edf24dba98fb684f8dcd2a05689ce9e05856d3"
+        },
+        {
+          "id": "LOD1",
+          "budget": 6000,
+          "url": "./assets/models/organic-scan-form-b_lod1.glb",
+          "size_bytes": 973820,
+          "size_label": "951 KB",
+          "sha256": "9c2e0f89bd9e1efc8b9e3482f5ee8f0856ea0dcb21c09b65aec537ad690ace81"
+        },
+        {
+          "id": "LOD2",
+          "budget": 2500,
+          "url": "./assets/models/organic-scan-form-b_lod2.glb",
+          "size_bytes": 406760,
+          "size_label": "397 KB",
+          "sha256": "d70db17bae438e196ea951b9122f8b81490d1798caaeca4457176600d5ea4c79"
+        }
+      ]
+    },
+    {
+      "id": "organic-scan-form-c",
+      "title": "Organic Scan Form C",
+      "category": "Scan Forms",
+      "source_family": "Smithsonian Open Access",
+      "source_note": "Open-structure scan form centered for interactive inspection.",
+      "thumbnail": "./assets/thumbnails/organic-scan-form-c.webp",
+      "lods": [
+        {
+          "id": "LOD0",
+          "budget": 12000,
+          "url": "./assets/models/organic-scan-form-c_lod0.glb",
+          "size_bytes": 1945768,
+          "size_label": "1.86 MB",
+          "sha256": "2cad5d4df73f51b99e5d6784add67a8d8218fd203829d3f9cfe2d9e50115c522"
+        },
+        {
+          "id": "LOD1",
+          "budget": 6000,
+          "url": "./assets/models/organic-scan-form-c_lod1.glb",
+          "size_bytes": 973772,
+          "size_label": "951 KB",
+          "sha256": "9c6e4af4926b4fbc4a3bc4665bb7b7a2ecb7957e79d0cb183ff5e39db260bdb1"
+        },
+        {
+          "id": "LOD2",
+          "budget": 2500,
+          "url": "./assets/models/organic-scan-form-c_lod2.glb",
+          "size_bytes": 406756,
+          "size_label": "397 KB",
+          "sha256": "f8523857753caa964b347a28e231ab2510de72ad327208d18670e28136aa4563"
+        }
+      ]
+    },
+    {
+      "id": "organic-scan-form-d",
+      "title": "Organic Scan Form D",
+      "category": "Scan Forms",
+      "source_family": "Smithsonian Open Access",
+      "source_note": "Slender scan form for checking LOD visibility at different scales.",
+      "thumbnail": "./assets/thumbnails/organic-scan-form-d.webp",
+      "lods": [
+        {
+          "id": "LOD0",
+          "budget": 12000,
+          "url": "./assets/models/organic-scan-form-d_lod0.glb",
+          "size_bytes": 1945768,
+          "size_label": "1.86 MB",
+          "sha256": "73072b6f0caa05132e83941b0d6fb0f364185ffd26acaba488db86bba0eb272a"
+        },
+        {
+          "id": "LOD1",
+          "budget": 6000,
+          "url": "./assets/models/organic-scan-form-d_lod1.glb",
+          "size_bytes": 973716,
+          "size_label": "951 KB",
+          "sha256": "c9ece9d8f17b065fc19bb0b8e1d950fece946d250855358fbfc361578f55798c"
+        },
+        {
+          "id": "LOD2",
+          "budget": 2500,
+          "url": "./assets/models/organic-scan-form-d_lod2.glb",
+          "size_bytes": 406808,
+          "size_label": "397 KB",
+          "sha256": "9fbd1cbed8c31ef4471237e9100347502a5d94102835e7bcabf16c2cd18c3aec"
+        }
+      ]
+    }
+  ]
+}

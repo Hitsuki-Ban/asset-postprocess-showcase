@@ -1,17 +1,24 @@
-# Asset Postprocess Public Preview
+# Asset Postprocess Gallery
 
-Public static preview gallery for selected 3DAssetPostprocess white LOD benchmark evidence.
+Public GitHub Pages demo for selected Asset Postprocess white LOD outputs.
 
-This repository is generated from `3DAssetPostprocess` runtime evidence and is intentionally separate from the private development repository. It publishes only public-safe preview/contact-sheet imagery and sanitized JSON metadata. Meshes, zip packages, raw logs, local paths, generated-source smoke evidence, and private runtime artifacts are not included.
+This repository intentionally ships a compact static gallery:
 
-Published page:
+- local vendored Three.js runtime;
+- eight curated public-sample artifacts;
+- LOD0, LOD1, and LOD2 GLB files for each artifact;
+- small WebP thumbnails for the exhibit rail.
 
-https://hitsuki-ban.github.io/asset-postprocess-showcase/
+Unselected runtime materials, raw logs, private benchmark manifests, and AI-generated stress assets are not published here. Google Scanned Objects samples are also excluded from this public page pending a separate redistribution review.
 
-Current included evidence lanes:
+## Local Preview
 
-- `ready20_current_auto_visible_v1`: current strict scan benchmark baseline.
-- `ready20_visible_depth10_diag_centered_current_v1`: non-default visible-surface depth/coverage tuning candidate.
-- `fail3_direct_scan_profile_route_compare_v1`: direct-route diagnostic probe.
+```bash
+python -m http.server 8770 --bind 127.0.0.1
+```
 
-Generated at: 2026-06-05T00:00:00Z
+Then open <http://127.0.0.1:8770/>.
+
+## Source Scope
+
+The selected public demo set uses Poly Haven and Smithsonian Open Access sample paths already tracked in the source project governance notes. This repository is a demo surface, not a complete benchmark dataset.

@@ -9,6 +9,7 @@ const state = {
   selectedId: null,
   category: "All",
   lodIndex: 0,
+  renderMode: "solid",
   autoRotate: false,
   activeObject: null,
   modelToken: 0,
@@ -20,17 +21,24 @@ const three = {
   renderer: null,
   controls: null,
   loader: new GLTFLoader(),
+  materials: null,
   container: null,
   status: null,
   animationId: null,
 };
+
+const renderModes = [
+  { id: "solid", label: "Solid", note: "Studio clay" },
+  { id: "wire", label: "Wire", note: "Topology lines" },
+  { id: "edges", label: "Edges", note: "Clay + outline" },
+  { id: "normals", label: "Normals", note: "Surface direction" },
+];
 
 const icons = {
   cube: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.7 20 7v9.9l-8 4.4-8-4.4V7l8-4.3Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m4.4 7.3 7.6 4.2 7.6-4.2M12 11.5v8.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>`,
   reset: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.8 10a7.5 7.5 0 1 1 2.1 7.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4.8 4.8V10h5.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   play: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M10 8.8 15.4 12 10 15.2V8.8Z" fill="currentColor"/></svg>`,
   pause: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M9 8.4h2.1v7.2H9zm4 0h2.1v7.2H13z" fill="currentColor"/></svg>`,
-  light: `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.8v2.5M12 18.7v2.5M21.2 12h-2.5M5.3 12H2.8m15.7-6.5-1.8 1.8M7.3 16.7l-1.8 1.8m0-13 1.8 1.8m9.4 9.4 1.8 1.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
   download: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11m0 0 4-4m-4 4-4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 18.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`,
   github: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8a9.2 9.2 0 0 0-2.9 17.9c.46.08.63-.2.63-.44v-1.55c-2.58.56-3.12-1.1-3.12-1.1-.42-1.08-1.03-1.37-1.03-1.37-.85-.58.06-.57.06-.57.94.07 1.43.97 1.43.97.83 1.42 2.17 1.01 2.7.78.08-.6.32-1.01.58-1.24-2.06-.24-4.22-1.03-4.22-4.57 0-1.01.36-1.84.96-2.49-.1-.24-.42-1.2.1-2.45 0 0 .79-.25 2.57.95A8.8 8.8 0 0 1 12 6.29c.79 0 1.58.11 2.32.32 1.78-1.2 2.56-.95 2.56-.95.52 1.25.2 2.21.1 2.45.6.65.96 1.48.96 2.49 0 3.55-2.17 4.32-4.23 4.56.33.29.63.86.63 1.74v2.58c0 .25.16.53.64.44A9.2 9.2 0 0 0 12 2.8Z" fill="currentColor"/></svg>`,
   chevronLeft: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
@@ -83,12 +91,12 @@ function render() {
           <button type="button" class="tool-button ${state.autoRotate ? "is-active" : ""}" data-action="rotate">
             ${state.autoRotate ? icons.pause : icons.play}<span>Auto Rotate</span>
           </button>
-          <button type="button" class="icon-button" data-action="light" aria-label="Neutral studio lighting">${icons.light}</button>
         </div>
       </div>
       <section class="gallery-main">
         <div class="viewer-frame" id="viewer-frame">
           <div class="viewer-mark">${icons.cube}</div>
+          <div class="viewer-mode-readout">${escapeHtml(currentRenderMode().label)} · ${escapeHtml(selectedLod?.id ?? "LOD0")}</div>
           <div class="model-status is-visible" id="model-status">Loading model...</div>
           <div class="viewer-hints" aria-hidden="true">
             <span class="hint"><span class="hint-icon"></span>Orbit</span>
@@ -161,11 +169,28 @@ function detailsTemplate(item, selectedLod) {
         </div>
       </section>
       <div class="divider"></div>
+      <section aria-label="Render mode selection">
+        <p class="panel-label">Render</p>
+        <div class="render-mode-grid" role="radiogroup" aria-label="Render mode">
+          ${renderModes.map(renderModeButton).join("")}
+        </div>
+      </section>
+      <div class="divider"></div>
       <a class="download-link" href="${escapeAttr(selectedLod.url)}" download>
         ${icons.download}
         <span>Download ${escapeHtml(selectedLod.id)} GLB (${escapeHtml(selectedLod.size_label)})</span>
       </a>
     </aside>
+  `;
+}
+
+function renderModeButton(mode) {
+  const active = state.renderMode === mode.id ? "is-active" : "";
+  return `
+    <button type="button" class="render-mode-button ${active}" role="radio" aria-checked="${state.renderMode === mode.id}" data-render-mode="${escapeAttr(mode.id)}">
+      <strong>${escapeHtml(mode.label)}</strong>
+      <span>${escapeHtml(mode.note)}</span>
+    </button>
   `;
 }
 
@@ -238,6 +263,16 @@ function bindEvents() {
     });
   });
 
+  app.querySelectorAll("[data-render-mode]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.renderMode = button.dataset.renderMode;
+      applyRenderMode(state.activeObject);
+      render();
+      resizeRenderer();
+      hideModelStatus();
+    });
+  });
+
   app.querySelectorAll("[data-action]").forEach((button) => {
     button.addEventListener("click", async () => {
       const action = button.dataset.action;
@@ -275,6 +310,7 @@ function setupThree() {
   three.renderer.shadowMap.enabled = true;
   three.renderer.shadowMap.type = THREE.PCFShadowMap;
   three.container.appendChild(three.renderer.domElement);
+  three.materials = createMaterials();
 
   three.controls = new OrbitControls(three.camera, three.renderer.domElement);
   three.controls.enableDamping = true;
@@ -352,7 +388,19 @@ async function loadSelectedModel(resetCamera = true, keepObject = false) {
 }
 
 function prepareModel(root) {
-  const clay = new THREE.MeshStandardMaterial({
+  root.traverse((node) => {
+    if (!node.isMesh) return;
+    node.castShadow = true;
+    node.receiveShadow = true;
+    if (node.geometry && !node.geometry.attributes.normal) {
+      node.geometry.computeVertexNormals();
+    }
+  });
+  applyRenderMode(root);
+}
+
+function createMaterials() {
+  const solid = new THREE.MeshStandardMaterial({
     color: 0xd8d6d1,
     roughness: 0.66,
     metalness: 0.02,
@@ -360,15 +408,72 @@ function prepareModel(root) {
     side: THREE.DoubleSide,
   });
 
+  const edgeClay = new THREE.MeshStandardMaterial({
+    color: 0xe6e3dd,
+    roughness: 0.7,
+    metalness: 0,
+    envMapIntensity: 0.22,
+    side: THREE.DoubleSide,
+    polygonOffset: true,
+    polygonOffsetFactor: 1,
+    polygonOffsetUnits: 1,
+  });
+
+  return {
+    solid,
+    edgeClay,
+    wire: new THREE.MeshBasicMaterial({
+      color: 0x27343b,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.82,
+      side: THREE.DoubleSide,
+    }),
+    normals: new THREE.MeshNormalMaterial({
+      flatShading: false,
+      side: THREE.DoubleSide,
+    }),
+    edges: new THREE.LineBasicMaterial({
+      color: 0x20343b,
+      transparent: true,
+      opacity: 0.42,
+      depthTest: true,
+    }),
+  };
+}
+
+function applyRenderMode(root) {
+  if (!root || !three.materials) return;
+  const mode = state.renderMode;
   root.traverse((node) => {
     if (!node.isMesh) return;
-    node.material = clay;
-    node.castShadow = true;
-    node.receiveShadow = true;
-    if (node.geometry && !node.geometry.attributes.normal) {
-      node.geometry.computeVertexNormals();
+    const edgeOverlay = ensureEdgeOverlay(node);
+    edgeOverlay.visible = mode === "edges";
+    node.castShadow = mode !== "wire" && mode !== "normals";
+    node.receiveShadow = mode !== "wire" && mode !== "normals";
+
+    if (mode === "wire") {
+      node.material = three.materials.wire;
+    } else if (mode === "normals") {
+      node.material = three.materials.normals;
+    } else if (mode === "edges") {
+      node.material = three.materials.edgeClay;
+    } else {
+      node.material = three.materials.solid;
     }
   });
+}
+
+function ensureEdgeOverlay(mesh) {
+  if (mesh.userData.edgeOverlay) return mesh.userData.edgeOverlay;
+  const geometry = new THREE.EdgesGeometry(mesh.geometry, 18);
+  const line = new THREE.LineSegments(geometry, three.materials.edges);
+  line.name = "edge-overlay";
+  line.renderOrder = 2;
+  line.visible = false;
+  mesh.add(line);
+  mesh.userData.edgeOverlay = line;
+  return line;
 }
 
 function centerAndScale(root) {
@@ -426,12 +531,8 @@ function hideModelStatus() {
 
 function disposeObject(object) {
   object.traverse((node) => {
-    if (!node.isMesh) return;
-    node.geometry?.dispose?.();
-    if (Array.isArray(node.material)) {
-      node.material.forEach((material) => material.dispose?.());
-    } else {
-      node.material?.dispose?.();
+    if (node.isMesh || node.isLineSegments) {
+      node.geometry?.dispose?.();
     }
   });
 }
@@ -443,6 +544,10 @@ function getSelectedItem() {
 function filteredItems() {
   if (state.category === "All") return state.gallery.items;
   return state.gallery.items.filter((item) => item.category === state.category);
+}
+
+function currentRenderMode() {
+  return renderModes.find((mode) => mode.id === state.renderMode) ?? renderModes[0];
 }
 
 function escapeHtml(value) {
